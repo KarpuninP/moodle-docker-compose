@@ -1,16 +1,15 @@
 version: '2.1'
 
 services:
-  # Aplicación
+  # Application
   app:
     image: tianon/true
     volumes:
       - ./${REPO_FOLDER}:${DOCUMENT_ROOT}:z
       - ./moodledata:${MOODLE_DATA}:z
-      # Uncomment following lines and modify path for CUSTOM_CA
-      # - /usr/local/share/ca-certificates/overcloud-cacert-mo.crt:/usr/local/share/ca-certificates/custom-ca.crt
+     
 
-  # Servicio de postgres:
+  # Postgres DB:
   postgres:
     image: "moodledev/postgres:13-${PG_LOCALE}"
     build:
@@ -19,9 +18,8 @@ services:
         locale: "${PG_LOCALE}"
     expose:
       - "${PG_PORT}"
-   # Uncomment following lines to expose postgres to host network
-   # ports:
-   #   - "${IP}:${PG_PORT}:5432"
+   ports:
+     - "${IP}:${PG_PORT}:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./db_dumps:/opt/db_dumps:z
@@ -32,7 +30,7 @@ services:
     depends_on:
       - app
 
-  # Servicio de PHP-FPM
+  # Service for PHP-FPM
   php-fpm:
     image: "moodledev/php:8.1-fpm"
     build:
@@ -50,11 +48,6 @@ services:
       - MOODLE_DATA
       - WWWROOT
       - WWW_PORT
-      # Uncomment following lines and modify variable content for CUSTOM_CA
-      # - |-
-      #   CA_CERT=-----BEGIN CERTIFICATE-----
-      #   REPLACE_CA_CONTENT
-      #   -----END CERTIFICATE-----
     volumes_from:
       - app
     volumes:
@@ -66,7 +59,7 @@ services:
     depends_on:
       - postgres
 
-  # Servicio de Apache2
+  # Services for Apache2
   apache2:
     image: moodledev/apache2:2.4
     build:
@@ -85,7 +78,7 @@ services:
     depends_on:
       - php-fpm
 
-  # Cron para moodle
+  # Cron for moodle
   cron:
     image: moodledev/php:8.1-fpm-cron
     build:
@@ -97,7 +90,7 @@ services:
     depends_on:
       - apache2
 
- # Gestor de base de datos
+ # Database manager
   pgadmin:
     image: "foxylion/pgadmin4"
     ports:
