@@ -1,5 +1,5 @@
 FROM php:8.1-fpm
-LABEL Description="Esta imagen sirve para la configuración de php-fpm para moodle" Version="1.0"
+LABEL Description="This image is used for configuring php-fpm for Moodle." Version="1.0"
 
 ARG DOCUMENT_ROOT=/var/www/html
 ARG MY_TZ=America/Costa_Rica
@@ -16,7 +16,7 @@ RUN apt-get update && \
     docker-php-ext-install gd && \
     docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu && \
     docker-php-ext-install ldap && \
-    # Ya están instalados curl iconv mbstring openssl tokenizer ctype simplexml spl pcre dom xml json sodium \
+    # The following are already installed: curl, iconv, mbstring, openssl, tokenizer, ctype, simplexml, spl, pcre, dom, xml, json, sodium.\
     docker-php-ext-install soap zip intl pspell pgsql xsl exif && \
     docker-php-ext-configure opcache --enable-opcache && docker-php-ext-install opcache && \
     pecl install xdebug xmlrpc-beta
@@ -29,7 +29,7 @@ RUN tideways_latest="$(basename $(curl -Ls -o /dev/null -w %{url_effective} http
     docker-php-ext-configure /usr/src/php/ext/tideways_xhprof && \
     docker-php-ext-install -j "$(nproc)" /usr/src/php/ext/tideways_xhprof
 
-# Adicionales
+# Additional modules
 RUN apt-get install -y graphviz zip unzip aspell-es
 
 # Config
@@ -38,17 +38,17 @@ COPY conf/custom-xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 COPY conf/custom-opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY conf/php-fpm-xdebug-entrypoint.sh /usr/local/bin/php-fpm-xdebug-entrypoint
 
-# TZ
+# TimeZone
 RUN echo "${WEB_MY_TZ}" > /etc/timezone && \
     dpkg-reconfigure -f noninteractive tzdata && \
     sed -i  "s@MY_TZ_WILL_BE_REPLACE@${WEB_MY_TZ}@" /usr/local/etc/php/conf.d/php.ini
 
-# Limpieza
+# Cleanup
 RUN apt-get clean && \
     rm -r /var/lib/apt/lists/* && \
     rm -r /var/cache/apt/*
 
-# Propiedad
+# Ownership
 RUN usermod -u 1000 www-data
 
 WORKDIR ${WEB_DOCUMENT_ROOT}

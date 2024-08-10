@@ -1,5 +1,5 @@
 FROM moodledev/php:8.1-fpm
-LABEL Description="Esta imagen sirve para la configuración del cron de moodle" Version="1.0"
+LABEL Description="This image is used for configuring cron for Moodle." Version="1.0"
 
 ARG DOCUMENT_ROOT=/var/www/html
 
@@ -7,7 +7,7 @@ ENV WEB_DOCUMENT_ROOT=$DOCUMENT_ROOT
 
 RUN apt-get update && apt-get install --no-install-recommends -y cron inetutils-syslogd supervisor
 
-# Archivos cron
+# Save cron
 ADD conf/cron_moodle_entry /etc/cron.d/moodle
 ADD conf/supervisor.conf /etc/supervisor/conf.d/supervisor_cron.conf
 
@@ -17,7 +17,7 @@ RUN sed -i "s@DOCROOT@${WEB_DOCUMENT_ROOT}@" /etc/cron.d/moodle && \
     touch /etc/crontab /etc/cron.*/* && \
     sed -i "s@^#cron.@cron.@" /etc/syslog.conf
 
-# Limpieza
+# Cleanup
 RUN apt-get clean && \
     rm -r /var/lib/apt/lists/* && \
     rm -r /var/cache/apt/*

@@ -1,5 +1,5 @@
 FROM postgres:13
-LABEL Description="Esta imagen sirve para la configuración de la capa de base de datos" Version="1.0"
+LABEL Description="This image is used for configuring the database layer" Version="1.0"
 
 ARG locale=es_CR
 ARG MY_TZ=America/Costa_Rica

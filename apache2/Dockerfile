@@ -1,5 +1,5 @@
 FROM webdevops/apache:debian-9
-LABEL Description="Esta imagen sirve para la configuración de apache para moodle" Version="1.0"
+LABEL Description="This image is used for configuring apache for Moodle." Version="1.0"
 
 ARG PHP_SOCKET=php-fpm:9000
 ARG DOCUMENT_ROOT=/var/www/html
@@ -18,7 +18,7 @@ RUN rm -rf /etc/apache2/mods-enabled/* && \
     # Moodle \
     a2enmod actions alias authz_host autoindex cache cgid deflate dir expires headers mime rewrite
 
-# TZ
+# TimeZone
 RUN echo "${WEB_MY_TZ}" > /etc/timezone && \
     dpkg-reconfigure -f noninteractive tzdata
 
