@@ -1,4 +1,4 @@
-# docker-compose-moodle
+# moodle-docker-compose
 [![Build Status](https://travis-ci.org/jobcespedes/docker-compose-moodle.svg?branch=master)](https://travis-ci.org/jobcespedes/docker-compose-moodle)
 ![Moodle](https://img.shields.io/badge/Moodle-3.5-blue.svg?colorB=f98012)
 ![Apache2](https://img.shields.io/badge/Apache2-2.4-blue.svg?colorB=557697)
