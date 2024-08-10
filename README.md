@@ -36,17 +36,17 @@ The following table describes environment variables set in [**.env**](.env). The
 | :-------------------- | :----------------- | :----------------------------------------------------------------------- |
 | **REPO_FOLDER**       | html               | Default relative path for Moodle repo                                    |
 | **DOCUMENT_ROOT**     | /var/www/html      | Mount point inside containers for volume **REPO_FOLDER**                 |
-| **MY_TZ**             | America/Costa_Rica | Containers timezone                                                      |
-| **PG_LOCALE**         | es_CR              | Containers locale                                                        |
+| **MY_TZ**             | Europe/Berlin      | Containers timezone                                                      |
+| **PG_LOCALE**         | en_US              | Containers locale                                                        |
 | **PG_PORT**           | 5432               | Postregres port to expose                                                |
 | **POSTGRES_DB**       | moodle             | Postgres DB for Moodle                                                   |
 | **POSTGRES_USER**     | user               | DB user for Moodle                                                       |
 | **POSTGRES_PASSWORD** | password           | DB password for Moodle                                                   |
 | **PHP_SOCKET**        | 9000               | PHP-FPM socket to connect apache2  and php-fpm services                  |
-| **ALIAS_DOMAIN**      | localhost          | Domain Alias                                                             |
+| **ALIAS_DOMAIN**      | 192.168.178.146    | Domain Alias                                                             |
 | **WWW_PORT**          | 80                 | Web port to be bound                                                     |
 | **MOODLE_DATA**       | /var/moodledata    | Mount point inside containers for Moodle data folder                     |
-| **WWWROOT**           | localhost          | Host part to set in Moodle file 'config.php' for config option 'wwwroot' |
+| **WWWROOT**           | 192.168.178.146    | Host part to set in Moodle file 'config.php' for config option 'wwwroot' |
 
 ## Docker Compose resources
 The following table sums up Docker Compose resources.
@@ -66,8 +66,7 @@ The following table sums up Docker Compose resources.
 1. Run project
 ``` bash
 docker-compose up -d
-# Different project name
-# docker-compose -p my-proj up -d
+
 ```
 2. Stop project
 ``` bash
@@ -87,13 +86,6 @@ docker-compose down
 # With different project name:
 # docker-compose -p my-proj down
 ```
-5. Logs
-``` bash
-docker-compose logs
-# docker-compose logs -f --tail="20" php-fpm
-```
-
-
 
 
 
