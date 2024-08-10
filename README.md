@@ -22,12 +22,10 @@ This project quickly builds a local workspace for Moodle  (Apache2, PHP-FPM with
 1. [Environment Variables](#Environment-variables)
 2. [Docker Compose Resources](#Docker-Compose-resources)
 3. [Workspace Operations](#Project-management-with-Docker-Compose)
-4. [Debugging with XDEBUG](#XDEBUG)
-5. [Moodle Cron Debugging](#Cron-debugging)
-6. [Database management with Pgadmin4](#Pgadmin4)
-7. [Backup and restore database](#Backup-and-restore-database)
-8. [Install Docker](https://docs.docker.com/install/)
-9. [Install Docker Compose](https://docs.docker.com/compose/install/)
+4. [Database management with Pgadmin4](#Pgadmin4)
+5. [Backup and restore database](#Backup-and-restore-database)
+6. [Install Docker](https://docs.docker.com/install/)
+7. [Install Docker Compose](https://docs.docker.com/compose/install/)
 
 ## Environment variables
 The following table describes environment variables set in [**.env**](.env). The defaults work for a initial setup. They can be modified if needed.
