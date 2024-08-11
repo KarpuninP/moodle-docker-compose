@@ -16,7 +16,7 @@ This project quickly builds a local workspace for Moodle  (Apache2, PHP-FPM with
 3. Download this repo: `git clone https://github.com/Rennesz/moodle-docker-compose.git && cd moodle-docker-compose`
 4. Clone Moodle repo: `git clone --branch MOODLE_401_STABLE --depth 1 https://github.com/moodle/moodle html`
 5. Change variables in **.env** to your need
-6. Run with: `docker-compose up -d`
+6. Run with: `docker compose up -d`
 
 ## Contents
 1. [Environment Variables](#Environment-variables)
@@ -63,26 +63,26 @@ The following table sums up Docker Compose resources.
 > **Inside project folder**
 1. Run project
 ``` bash
-docker-compose up -d
+docker compose up -d
 
 ```
 2. Stop project
 ``` bash
-docker-compose stop
-# docker-compose stop php-fpm
+docker compose stop
+# docker compose stop php-fpm
 ```
 3. Start project
 ``` bash
-docker-compose start
-# docker-compose start php-fpm
+docker compose start
+# docker compose start php-fpm
 ```
 4. Remove project
 ``` bash
-docker-compose down
+docker compose down
 # Remove volumes too
-# docker-compose --volumes
+# docker compose --volumes
 # With different project name:
-# docker-compose -p my-proj down
+# docker compose -p my-proj down
 ```
 
 
@@ -115,7 +115,7 @@ docker-compose exec postgres pg_dump -U ${POSTGRES_USER} ${POSTGRES_DB} -Fc -f /
 # Restore
 # -c  Clean (drop) database objects before recreating them.
 # -C  Create the database before restoring into it
-docker-compose exec postgres pg_restore -U ${POSTGRES_USER} -d postgres -c -C -O --role ${POSTGRES_USER} /opt/db_dumps/${DB_DUMP_NAME}
+docker compose exec postgres pg_restore -U ${POSTGRES_USER} -d postgres -c -C -O --role ${POSTGRES_USER} /opt/db_dumps/${DB_DUMP_NAME}
 ```
 
 A database can be automatically restored when postgres service starts. By placing a dump file inside 'db_dumps' folder and naming it "dump-init.dump", postgres container will try to restore that file as an initial database if data directory is empty.
