@@ -63,26 +63,26 @@ The following table sums up Docker Compose resources.
 > **Inside project folder**
 1. Run project
 ``` bash
-docker compose up -d
+sudo docker compose up -d
 
 ```
 2. Stop project
 ``` bash
-docker compose stop
-# docker compose stop php-fpm
+sudo docker compose stop
+# sudo docker compose stop php-fpm
 ```
 3. Start project
 ``` bash
-docker compose start
-# docker compose start php-fpm
+sudo docker compose start
+# sudo docker compose start php-fpm
 ```
 4. Remove project
 ``` bash
-docker compose down
+sudo docker compose down
 # Remove volumes too
-# docker compose --volumes
+# sudo docker compose --volumes
 # With different project name:
-# docker compose -p my-proj down
+# sudo docker compose -p my-proj down
 ```
 
 
@@ -110,12 +110,12 @@ DB_DUMP_NAME=dump-init.$(date +"%Y%m%d%H%M%S").dump
 
 # Backup
 # -Fc  Output a custom-format archive suitable for input into pg_restore
-docker compose exec postgres pg_dump -U ${POSTGRES_USER} ${POSTGRES_DB} -Fc -f /opt/db_dumps/${DB_DUMP_NAME}
+sudo docker compose exec postgres pg_dump -U ${POSTGRES_USER} ${POSTGRES_DB} -Fc -f /opt/db_dumps/${DB_DUMP_NAME}
 
 # Restore
 # -c  Clean (drop) database objects before recreating them.
 # -C  Create the database before restoring into it
-docker compose exec postgres pg_restore -U ${POSTGRES_USER} -d postgres -c -C -O --role ${POSTGRES_USER} /opt/db_dumps/${DB_DUMP_NAME}
+sudo docker compose exec postgres pg_restore -U ${POSTGRES_USER} -d postgres -c -C -O --role ${POSTGRES_USER} /opt/db_dumps/${DB_DUMP_NAME}
 ```
 
 A database can be automatically restored when postgres service starts. By placing a dump file inside 'db_dumps' folder and naming it "dump-init.dump", postgres container will try to restore that file as an initial database if data directory is empty.
