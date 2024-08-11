@@ -16,7 +16,7 @@ This project quickly builds a local workspace for Moodle  (Apache2, PHP-FPM with
 3. Download this repo: `git clone https://github.com/Rennesz/moodle-docker-compose.git && cd moodle-docker-compose`
 4. Clone Moodle repo: `git clone --branch MOODLE_401_STABLE --depth 1 https://github.com/moodle/moodle html`
 5. Change variables in **.env** to your need
-6. Run with: `docker compose up -d`
+6. Run with: `sudo docker compose up -d`
 
 ## Contents
 1. [Environment Variables](#Environment-variables)
