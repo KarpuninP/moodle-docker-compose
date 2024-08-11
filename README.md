@@ -110,7 +110,7 @@ DB_DUMP_NAME=dump-init.$(date +"%Y%m%d%H%M%S").dump
 
 # Backup
 # -Fc  Output a custom-format archive suitable for input into pg_restore
-docker-compose exec postgres pg_dump -U ${POSTGRES_USER} ${POSTGRES_DB} -Fc -f /opt/db_dumps/${DB_DUMP_NAME}
+docker compose exec postgres pg_dump -U ${POSTGRES_USER} ${POSTGRES_DB} -Fc -f /opt/db_dumps/${DB_DUMP_NAME}
 
 # Restore
 # -c  Clean (drop) database objects before recreating them.
