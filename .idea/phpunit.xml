@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PHPUnit">
+    <option name="directories">
+      <list>
+        <option value="$PROJECT_DIR$/html/lib/phpunit/tests" />
+        <option value="$PROJECT_DIR$/html/lib/testing" />
+        <option value="$PROJECT_DIR$/html/lib/ddl/tests" />
+        <option value="$PROJECT_DIR$/html/lib/dml/tests" />
+        <option value="$PROJECT_DIR$/html/lib/tests" />
+        <option value="$PROJECT_DIR$/html/favourites/tests" />
+        <option value="$PROJECT_DIR$/html/lib/form/tests" />
+        <option value="$PROJECT_DIR$/html/lib/filestorage/tests" />
+        <option value="$PROJECT_DIR$/html/lib/filebrowser/tests" />
+        <option value="$PROJECT_DIR$/html/files/tests" />
+        <option value="$PROJECT_DIR$/html/filter/tests" />
+        <option value="$PROJECT_DIR$/html/admin/roles/tests" />
+        <option value="$PROJECT_DIR$/html/cohort/tests" />
+        <option value="$PROJECT_DIR$/html/lib/grade/tests" />
+        <option value="$PROJECT_DIR$/html/grade/tests" />
+        <option value="$PROJECT_DIR$/html/grade/grading/tests" />
+        <option value="$PROJECT_DIR$/html/grade/import/csv/tests" />
+        <option value="$PROJECT_DIR$/html/analytics/tests" />
+        <option value="$PROJECT_DIR$/html/availability/tests" />
+        <option value="$PROJECT_DIR$/html/backup/controller/tests" />
+        <option value="$PROJECT_DIR$/html/backup/converter/moodle1/tests" />
+        <option value="$PROJECT_DIR$/html/backup/moodle2/tests" />
+        <option value="$PROJECT_DIR$/html/backup/tests" />
+        <option value="$PROJECT_DIR$/html/backup/util" />
+        <option value="$PROJECT_DIR$/html/badges/tests" />
+        <option value="$PROJECT_DIR$/html/blog/tests" />
+        <option value="$PROJECT_DIR$/html/customfield/tests" />
+        <option value="$PROJECT_DIR$/html/iplookup/tests" />
+        <option value="$PROJECT_DIR$/html/course/tests" />
+        <option value="$PROJECT_DIR$/html/privacy/tests" />
+        <option value="$PROJECT_DIR$/html/question/engine/tests" />
+        <option value="$PROJECT_DIR$/html/question/tests" />
+        <option value="$PROJECT_DIR$/html/question/type/tests" />
+        <option value="$PROJECT_DIR$/html/question/engine/upgrade/tests" />
+        <option value="$PROJECT_DIR$/html/cache/tests" />
+        <option value="$PROJECT_DIR$/html/calendar/tests" />
+        <option value="$PROJECT_DIR$/html/enrol/tests" />
+        <option value="$PROJECT_DIR$/html/group/tests" />
+        <option value="$PROJECT_DIR$/html/lib/external/tests" />
+        <option value="$PROJECT_DIR$/html/message/tests" />
+        <option value="$PROJECT_DIR$/html/notes/tests" />
+        <option value="$PROJECT_DIR$/html/tag/tests" />
+        <option value="$PROJECT_DIR$/html/rating/tests" />
+        <option value="$PROJECT_DIR$/html/repository/tests" />
+        <option value="$PROJECT_DIR$/html/lib/userkey/tests" />
+        <option value="$PROJECT_DIR$/html/user/tests" />
+        <option value="$PROJECT_DIR$/html/webservice/tests" />
+        <option value="$PROJECT_DIR$/html/mnet/tests" />
+        <option value="$PROJECT_DIR$/html/completion/tests" />
+        <option value="$PROJECT_DIR$/html/comment/tests" />
+        <option value="$PROJECT_DIR$/html/search/tests" />
+        <option value="$PROJECT_DIR$/html/competency/tests" />
+        <option value="$PROJECT_DIR$/html/my/tests" />
+        <option value="$PROJECT_DIR$/html/auth/tests" />
+        <option value="$PROJECT_DIR$/html/blocks/tests" />
+        <option value="$PROJECT_DIR$/html/login/tests" />
+        <option value="$PROJECT_DIR$/html/plagiarism/tests" />
+        <option value="$PROJECT_DIR$/html/portfolio/tests" />
+        <option value="$PROJECT_DIR$/html/lib/editor/tests" />
+        <option value="$PROJECT_DIR$/html/rss/tests" />
+        <option value="$PROJECT_DIR$/html/lib/table/tests" />
+        <option value="$PROJECT_DIR$/html/h5p/tests" />
+        <option value="$PROJECT_DIR$/html/lib/xapi/tests" />
+        <option value="$PROJECT_DIR$/html/contentbank/tests" />
+      </list>
+    </option>
+  </component>
+</project>

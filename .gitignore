@@ -4,3 +4,4 @@
 /db_dumps/*
 !/db_dumps/README.md
 /log/xdebug.log
+.lectur_dev_dump.sql

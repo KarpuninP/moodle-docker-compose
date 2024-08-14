@@ -3,38 +3,35 @@ version: '2.1'
 services:
   # Application
   app:
-    container_name: app_container
+    container_name: app_container_v_lecturenfant
     image: tianon/true
     volumes:
       - ./${REPO_FOLDER}:${DOCUMENT_ROOT}:z
       - ./moodledata:${MOODLE_DATA}:z
 
-  # Postgres DB
-  postgres:
-    container_name: postgres_container
-    image: "moodledev/postgres:13-${PG_LOCALE}"
-    build:
-      context: ./postgres
-      args:
-        locale: "${PG_LOCALE}"
-    expose:
-      - "${PG_PORT}"
-    ports:
-      - "${IP}:${PG_PORT}:5432"
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-      - ./db_dumps:/opt/db_dumps:z
+  # mariadb
+  mariadb:
+    container_name: mariadb_container_v_lecturenfant
+    image: wodby/mariadb:latest
+    restart: always
     environment:
-      POSTGRES_DB: "${POSTGRES_DB}"
-      POSTGRES_USER: "${POSTGRES_USER}"
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${SQL_ROOT}"
+      MYSQL_DATABASE: "${SQL_DB}"
+      MYSQL_USER: "${SQL_USER}"
+      MYSQL_PASSWORD: "${SQL_PASSWORD}"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db_dumps:/backup:z
+      - ./lectur_dev_dump.sql:/docker-entrypoint-initdb.d/lectur_dev_dump.sql
+    ports:
+      - "${IP}:${SQL_PORT}:3306"
     depends_on:
       - app
 
   # Service for PHP-FPM
   php-fpm:
-    container_name: php_fpm_container
-    image: "moodledev/php:8.1-fpm"
+    container_name: php_fpm_container_v_lecturenfant
+    image: "moodledev/php:7.4-fpm"
     build:
       context: ./php-fpm
       args:
@@ -44,9 +41,9 @@ services:
       - XDEBUG_CONFIG=idekey=PHPTEST
       - PHP_IDE_CONFIG=serverName=localhost
       - DOCUMENT_ROOT
-      - POSTGRES_DB
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
+      - SQL_DB
+      - SQL_USER
+      - SQL_PASSWORD
       - MOODLE_DATA
       - WWWROOT
       - WWW_PORT
@@ -57,13 +54,13 @@ services:
     expose:
       - "${PHP_SOCKET}"
     links:
-      - postgres
+      - mariadb
     depends_on:
-      - postgres
+      - mariadb
 
   # Services for Apache2
   apache2:
-    container_name: apache2_container
+    container_name: apache2_container_v_lecturenfant
     image: moodledev/apache2:2.4
     build:
       context: ./apache2
@@ -77,14 +74,14 @@ services:
       - "${IP}:${WWW_PORT}:80"
     links:
       - php-fpm
-      - postgres
+      - mariadb
     depends_on:
       - php-fpm
 
   # Cron for Moodle
   cron:
-    container_name: cron_container
-    image: moodledev/php:8.1-fpm-cron
+    container_name: cron_container_v_lecturenfant
+    image: moodledev/php:7.4-fpm-cron
     build:
       context: ./cron
       args:
@@ -95,18 +92,21 @@ services:
       - apache2
 
   # Database manager
-  pgadmin:
-    container_name: pgadmin_container
-    image: "foxylion/pgadmin4"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
     ports:
-      - "${IP}:5050:80"
+      - "${IP}:8081:80"
+    environment:
+      PMA_HOST: mariadb
     links:
-      - postgres
+      - mariadb
     volumes:
-      - ./db_dumps:/root:z
+      - ./db_dumps:/var/www/html/upload:z
     depends_on:
-      - postgres
+      - mariadb
 
 volumes:
-  postgres-data:
+  db_data:
     driver: "local"
